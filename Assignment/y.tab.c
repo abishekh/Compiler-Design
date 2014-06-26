@@ -1,0 +1,849 @@
+#ifndef lint
+static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
+#endif
+
+#include <stdlib.h>
+#include <string.h>
+
+#define YYBYACC 1
+#define YYMAJOR 1
+#define YYMINOR 9
+#define YYPATCH 20090221
+
+#define YYEMPTY        (-1)
+#define yyclearin      (yychar = YYEMPTY)
+#define yyerrok        (yyerrflag = 0)
+#define YYRECOVERING() (yyerrflag != 0)
+
+/* compatibility with bison */
+#ifdef YYPARSE_PARAM
+/* compatibility with FreeBSD */
+#ifdef YYPARSE_PARAM_TYPE
+#define YYPARSE_DECL() yyparse(YYPARSE_PARAM_TYPE YYPARSE_PARAM)
+#else
+#define YYPARSE_DECL() yyparse(void *YYPARSE_PARAM)
+#endif
+#else
+#define YYPARSE_DECL() yyparse(void)
+#endif /* YYPARSE_PARAM */
+
+extern int YYPARSE_DECL();
+
+static int yygrowstack(void);
+#define YYPREFIX "yy"
+#line 2 "crc.y"
+  #include "dstruct.h"
+  #ifndef debug
+  #define debug 0
+  #endif
+  extern int  yylineno;
+  extern char* yytext[];
+  extern FILE* outFile_p;
+  int noerror=1;
+#line 11 "crc.y"
+typedef union{
+ char stval[100];
+ char* ptr;
+ COLABR *colbr;
+ ATTR *attr;
+ RESPONS *resp;
+ CARD *card;
+ } YYSTYPE;
+#line 52 "y.tab.c"
+#define CLASS 257
+#define CRC 258
+#define END 259
+#define CLASSNAME 260
+#define RESPONSIBILITY 261
+#define COLABRATION 262
+#define STRING 263
+#define INT 264
+#define CHAR 265
+#define PTR 266
+#define VARIABLE 267
+#define METHODNAME 268
+#define USING 269
+#define HAS_A 270
+#define KIND_OF 271
+#define YYERRCODE 256
+static const short yylhs[] = {                           -1,
+    0,   12,   12,   12,   11,    2,    2,    1,   10,   10,
+   10,    9,    9,    3,    7,    7,    8,    8,    8,    8,
+    8,    8,    8,    8,    8,    8,    6,    6,    5,    5,
+    4,    4,    4,    4,    4,    4,    4,
+};
+static const short yylen[] = {                            2,
+    1,    1,    2,    1,    5,    2,    2,    1,    1,    2,
+    1,    4,    4,    1,    0,    2,    2,    2,    3,    3,
+    2,    3,    2,    2,    3,    3,    0,    2,    3,    3,
+    2,    2,    2,    2,    2,    2,    2,
+};
+static const short yydefred[] = {                         0,
+    4,    0,    0,    2,    0,    0,    0,    3,    7,    8,
+    6,   11,    0,    9,    0,   15,   14,   15,    0,   10,
+    0,    0,    5,    0,   28,    0,   13,    0,    0,   16,
+   12,    0,    0,    0,    0,    0,   21,    0,   23,    0,
+   17,   24,    0,   18,   30,   34,   35,   31,   36,   32,
+   37,   33,   29,   22,   25,   19,   26,   20,
+};
+static const short yydgoto[] = {                          3,
+   11,    7,   18,   36,   25,   19,   21,   30,   14,   15,
+    4,    5,
+};
+static const short yysindex[] = {                      -214,
+    0, -218,    0,    0, -215, -254, -251,    0,    0,    0,
+    0,    0, -252,    0, -258,    0,    0,    0, -237,    0,
+ -235, -233,    0, -256,    0, -226,    0, -255, -249,    0,
+    0, -212, -229, -208, -206, -213,    0, -211,    0, -248,
+    0,    0, -247,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,
+};
+static const short yyrindex[] = {                         0,
+    0,    0,    0,    0,   53,    0,    0,    0,    0,    0,
+    0,    0,    0,    0, -221,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,
+};
+static const short yygindex[] = {                         0,
+    0,    1,    0,    0,    0,    0,   36,    0,   40,    0,
+   51,    0,
+};
+#define YYTABLESIZE 56
+static const short yytable[] = {                         32,
+   39,    9,   13,   16,   12,   10,   42,   55,   57,   13,
+   40,   41,   33,   34,   35,   17,   43,   44,   56,   58,
+   26,   23,   26,   27,   24,   31,   47,    6,   28,   29,
+   28,   29,   46,   48,   50,   52,   37,   27,    6,   38,
+   27,    1,    2,    2,    6,   53,   45,   49,    6,   51,
+    6,   54,    1,   22,   20,    8,
+};
+static const short yycheck[] = {                        256,
+  256,  256,  261,  256,  256,  260,  256,  256,  256,  261,
+  266,  267,  269,  270,  271,  268,  266,  267,  267,  267,
+  256,  259,  256,  259,  262,  259,  256,  257,  264,  265,
+  264,  265,   32,   33,   34,   35,  263,  259,  257,  266,
+  262,  256,  258,  258,  257,  259,  259,  256,  257,  256,
+  257,  263,    0,   18,   15,    5,
+};
+#define YYFINAL 3
+#ifndef YYDEBUG
+#define YYDEBUG 0
+#endif
+#define YYMAXTOKEN 271
+#if YYDEBUG
+static const char *yyname[] = {
+
+"end-of-file",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"CLASS","CRC","END","CLASSNAME",
+"RESPONSIBILITY","COLABRATION","STRING","INT","CHAR","PTR","VARIABLE",
+"METHODNAME","USING","HAS_A","KIND_OF",
+};
+static const char *yyrule[] = {
+"$accept : data",
+"data : cards",
+"cards : crc",
+"cards : cards crc",
+"cards : error",
+"crc : CRC class responsibilities colabrations END",
+"class : CLASS className",
+"class : CLASS error",
+"className : CLASSNAME",
+"responsibilities : responsibility",
+"responsibilities : responsibilities responsibility",
+"responsibilities : error",
+"responsibility : RESPONSIBILITY methodName attributes END",
+"responsibility : RESPONSIBILITY error attributes END",
+"methodName : METHODNAME",
+"attributes :",
+"attributes : attributes attribute",
+"attribute : INT VARIABLE",
+"attribute : CHAR VARIABLE",
+"attribute : INT PTR VARIABLE",
+"attribute : CHAR PTR VARIABLE",
+"attribute : error STRING",
+"attribute : error PTR STRING",
+"attribute : INT error",
+"attribute : CHAR error",
+"attribute : INT PTR error",
+"attribute : CHAR PTR error",
+"colabrations :",
+"colabrations : colabrations colabration",
+"colabration : COLABRATION colabrationType END",
+"colabration : COLABRATION error END",
+"colabrationType : USING class",
+"colabrationType : HAS_A class",
+"colabrationType : KIND_OF class",
+"colabrationType : error class",
+"colabrationType : USING error",
+"colabrationType : HAS_A error",
+"colabrationType : KIND_OF error",
+
+};
+#endif
+#if YYDEBUG
+#include <stdio.h>
+#endif
+
+/* define the initial stack-sizes */
+#ifdef YYSTACKSIZE
+#undef YYMAXDEPTH
+#define YYMAXDEPTH  YYSTACKSIZE
+#else
+#ifdef YYMAXDEPTH
+#define YYSTACKSIZE YYMAXDEPTH
+#else
+#define YYSTACKSIZE 500
+#define YYMAXDEPTH  500
+#endif
+#endif
+
+#define YYINITSTACKSIZE 500
+
+int      yydebug;
+int      yynerrs;
+int      yyerrflag;
+int      yychar;
+short   *yyssp;
+YYSTYPE *yyvsp;
+YYSTYPE  yyval;
+YYSTYPE  yylval;
+
+/* variables for the parser stack */
+static short   *yyss;
+static short   *yysslim;
+static YYSTYPE *yyvs;
+static unsigned yystacksize;
+#line 302 "crc.y"
+#include<stdio.h>
+#include <iostream.h>
+#include <string.h>
+extern void yyerror(char* msg)
+{
+ noerror=0;
+ if(strcmp(msg,"syntax error"))
+  printf(" Syntax Error in Line : %d : %s\n",yylineno,msg);
+}
+
+#line 234 "y.tab.c"
+/* allocate initial stack or double stack size, up to YYMAXDEPTH */
+static int yygrowstack(void)
+{
+    int i;
+    unsigned newsize;
+    short *newss;
+    YYSTYPE *newvs;
+
+    if ((newsize = yystacksize) == 0)
+        newsize = YYINITSTACKSIZE;
+    else if (newsize >= YYMAXDEPTH)
+        return -1;
+    else if ((newsize *= 2) > YYMAXDEPTH)
+        newsize = YYMAXDEPTH;
+
+    i = yyssp - yyss;
+    newss = (yyss != 0)
+          ? (short *)realloc(yyss, newsize * sizeof(*newss))
+          : (short *)malloc(newsize * sizeof(*newss));
+    if (newss == 0)
+        return -1;
+
+    yyss  = newss;
+    yyssp = newss + i;
+    newvs = (yyvs != 0)
+          ? (YYSTYPE *)realloc(yyvs, newsize * sizeof(*newvs))
+          : (YYSTYPE *)malloc(newsize * sizeof(*newvs));
+    if (newvs == 0)
+        return -1;
+
+    yyvs = newvs;
+    yyvsp = newvs + i;
+    yystacksize = newsize;
+    yysslim = yyss + newsize - 1;
+    return 0;
+}
+
+#define YYABORT  goto yyabort
+#define YYREJECT goto yyabort
+#define YYACCEPT goto yyaccept
+#define YYERROR  goto yyerrlab
+
+int
+YYPARSE_DECL()
+{
+    int yym, yyn, yystate;
+#if YYDEBUG
+    const char *yys;
+
+    if ((yys = getenv("YYDEBUG")) != 0)
+    {
+        yyn = *yys;
+        if (yyn >= '0' && yyn <= '9')
+            yydebug = yyn - '0';
+    }
+#endif
+
+    yynerrs = 0;
+    yyerrflag = 0;
+    yychar = YYEMPTY;
+    yystate = 0;
+
+    if (yyss == NULL && yygrowstack()) goto yyoverflow;
+    yyssp = yyss;
+    yyvsp = yyvs;
+    yystate = 0;
+    *yyssp = 0;
+
+yyloop:
+    if ((yyn = yydefred[yystate]) != 0) goto yyreduce;
+    if (yychar < 0)
+    {
+        if ((yychar = yylex()) < 0) yychar = 0;
+#if YYDEBUG
+        if (yydebug)
+        {
+            yys = 0;
+            if (yychar <= YYMAXTOKEN) yys = yyname[yychar];
+            if (!yys) yys = "illegal-symbol";
+            printf("%sdebug: state %d, reading %d (%s)\n",
+                    YYPREFIX, yystate, yychar, yys);
+        }
+#endif
+    }
+    if ((yyn = yysindex[yystate]) && (yyn += yychar) >= 0 &&
+            yyn <= YYTABLESIZE && yycheck[yyn] == yychar)
+    {
+#if YYDEBUG
+        if (yydebug)
+            printf("%sdebug: state %d, shifting to state %d\n",
+                    YYPREFIX, yystate, yytable[yyn]);
+#endif
+        if (yyssp >= yysslim && yygrowstack())
+        {
+            goto yyoverflow;
+        }
+        yystate = yytable[yyn];
+        *++yyssp = yytable[yyn];
+        *++yyvsp = yylval;
+        yychar = YYEMPTY;
+        if (yyerrflag > 0)  --yyerrflag;
+        goto yyloop;
+    }
+    if ((yyn = yyrindex[yystate]) && (yyn += yychar) >= 0 &&
+            yyn <= YYTABLESIZE && yycheck[yyn] == yychar)
+    {
+        yyn = yytable[yyn];
+        goto yyreduce;
+    }
+    if (yyerrflag) goto yyinrecovery;
+
+    yyerror("syntax error");
+
+    goto yyerrlab;
+
+yyerrlab:
+    ++yynerrs;
+
+yyinrecovery:
+    if (yyerrflag < 3)
+    {
+        yyerrflag = 3;
+        for (;;)
+        {
+            if ((yyn = yysindex[*yyssp]) && (yyn += YYERRCODE) >= 0 &&
+                    yyn <= YYTABLESIZE && yycheck[yyn] == YYERRCODE)
+            {
+#if YYDEBUG
+                if (yydebug)
+                    printf("%sdebug: state %d, error recovery shifting\
+ to state %d\n", YYPREFIX, *yyssp, yytable[yyn]);
+#endif
+                if (yyssp >= yysslim && yygrowstack())
+                {
+                    goto yyoverflow;
+                }
+                yystate = yytable[yyn];
+                *++yyssp = yytable[yyn];
+                *++yyvsp = yylval;
+                goto yyloop;
+            }
+            else
+            {
+#if YYDEBUG
+                if (yydebug)
+                    printf("%sdebug: error recovery discarding state %d\n",
+                            YYPREFIX, *yyssp);
+#endif
+                if (yyssp <= yyss) goto yyabort;
+                --yyssp;
+                --yyvsp;
+            }
+        }
+    }
+    else
+    {
+        if (yychar == 0) goto yyabort;
+#if YYDEBUG
+        if (yydebug)
+        {
+            yys = 0;
+            if (yychar <= YYMAXTOKEN) yys = yyname[yychar];
+            if (!yys) yys = "illegal-symbol";
+            printf("%sdebug: state %d, error recovery discards token %d (%s)\n",
+                    YYPREFIX, yystate, yychar, yys);
+        }
+#endif
+        yychar = YYEMPTY;
+        goto yyloop;
+    }
+
+yyreduce:
+#if YYDEBUG
+    if (yydebug)
+        printf("%sdebug: state %d, reducing by rule %d (%s)\n",
+                YYPREFIX, yystate, yyn, yyrule[yyn]);
+#endif
+    yym = yylen[yyn];
+    if (yym)
+        yyval = yyvsp[1-yym];
+    else
+        memset(&yyval, 0, sizeof yyval);
+    switch (yyn)
+    {
+case 1:
+#line 37 "crc.y"
+	{ 
+              if(noerror)
+                generatePseudoCode(yyvsp[0].card,outFile_p);
+              if(debug)
+                displayDataStruct(yyvsp[0].card);
+              printf("Complete\n");
+            }
+break;
+case 2:
+#line 44 "crc.y"
+	{
+            if(noerror)
+             { yyval.card=yyvsp[0].card;
+               if(debug) 
+                printf("Assigned Ist Card\n");
+             }
+          }
+break;
+case 3:
+#line 51 "crc.y"
+	{
+                 if(noerror)
+                  {
+                   int no=2; 
+                   CARD *temp=yyval.card;
+                   while(temp->next)
+                    { temp=temp->next;
+                      no++;
+                    }
+                   temp->next=yyvsp[0].card;
+                   if(debug) 
+                    printf("Assigned %dth Card\n",no);
+                  }
+                }
+break;
+case 4:
+#line 65 "crc.y"
+	{
+             yyerror("error in input file");
+            }
+break;
+case 5:
+#line 68 "crc.y"
+	{
+          if(noerror)
+           {
+            CARD* crc=getNewCard();
+            crc->className=yyvsp[-3].ptr;
+            crc->responsibility=yyvsp[-2].resp;
+            crc->colabration=yyvsp[-1].colbr;
+            yyval.card=crc;
+           }
+          }
+break;
+case 6:
+#line 78 "crc.y"
+	{
+                       if(noerror)
+                        {
+                         yyval.ptr=yyvsp[0].ptr;
+                         if(debug) 
+                          printf("Assigned class name:%s\n",yyvsp[0].ptr);
+                        }
+                      }
+break;
+case 7:
+#line 86 "crc.y"
+	{ 
+                     yyerror("Class Name not specified"); 
+                   }
+break;
+case 8:
+#line 89 "crc.y"
+	{
+                      if(noerror)
+                       {
+                        char *name=(char*)malloc(strlen(yyvsp[0].stval)*sizeof(char));
+                        strcpy(name,yyvsp[0].stval);
+                        yyval.ptr=name;
+                       }
+                     }
+break;
+case 9:
+#line 97 "crc.y"
+	{
+                if(noerror)
+                 {
+                  yyval.resp=yyvsp[0].resp;
+                  if(debug) 
+                   printf("Assigned Ist Responsibility:%s\n",yyvsp[0].resp->methodName);
+                 }
+                }
+break;
+case 10:
+#line 105 "crc.y"
+	{
+                   if(noerror)
+                    {
+                      int no=2;
+                      RESPONS *temp=yyval.resp;
+                      while(temp->next)
+                        {temp=temp->next;
+                          no++;
+                        }
+                      temp->next=yyvsp[0].resp;
+                      if(debug)  
+                       printf("Assigned %dth Responsibility:%s\n",no,yyvsp[0].resp->methodName);
+                    }
+                  }
+break;
+case 11:
+#line 119 "crc.y"
+	{
+                        yyerror("error in responsibility");
+                       }
+break;
+case 12:
+#line 123 "crc.y"
+	{
+
+                  if(noerror)
+                   {
+                     RESPONS *res=getNewResp();
+                     res->methodName=yyvsp[-2].ptr;
+                     res->attribute=yyvsp[-1].attr;
+                     yyval.resp=res;
+                   }
+                 }
+break;
+case 13:
+#line 133 "crc.y"
+	{ 
+                                         yyerror("Method name not specified"); 
+                                        }
+break;
+case 14:
+#line 136 "crc.y"
+	{
+                        if(noerror)
+                        {
+                         char *name=(char*)malloc(strlen(yyvsp[0].stval)*sizeof(char));
+                         strcpy(name,yyvsp[0].stval);
+                         yyval.ptr=name; 
+                        }
+                       }
+break;
+case 15:
+#line 144 "crc.y"
+	{ 
+              yyval.attr=NULL;
+
+            }
+break;
+case 16:
+#line 148 "crc.y"
+	{
+                                 if(noerror)
+                                  {
+                                   if(yyval.attr)
+                                    {
+                                     int no=2;
+                                     ATTR *temp=yyval.attr;
+                                     while(temp->next)
+                                      {temp=temp->next;
+                                       no++;
+                                      }
+                                     temp->next=yyvsp[0].attr;
+                                     if(debug) 
+                                      printf("Assigned %dth Attribute:%s\n",no,
+
+                                                                   yyvsp[0].attr->attribute);
+
+                                    }
+                                   else
+                                   {
+                                    yyval.attr=yyvsp[0].attr;
+                                    if(debug) 
+                                     printf("Assigned Ist Attribute:%s\n",
+
+                                                             yyvsp[0].attr->attribute); 
+
+                                   }
+                                 }
+                               }
+break;
+case 17:
+#line 177 "crc.y"
+	{
+                         if(noerror)
+                          {
+                           ATTR* attr=getNewAttr();
+                           strcpy(attr->attribute,"int ");
+
+                           strcat(attr->attribute,yyvsp[0].stval);
+                           yyval.attr=attr;
+
+                          }
+                        }
+break;
+case 18:
+#line 188 "crc.y"
+	{
+                          if(noerror)
+                           {
+                            ATTR* attr=getNewAttr();
+                            strcpy(attr->attribute,"char ");
+                            yyval.attr=attr;
+                            strcat(attr->attribute,yyvsp[0].stval);
+
+                           }
+                          }
+break;
+case 19:
+#line 198 "crc.y"
+	{
+                             if(noerror)
+                              {
+                               ATTR* attr=getNewAttr();
+                               strcpy(attr->attribute,"int *");
+                               strcat(attr->attribute,yyvsp[0].stval);
+
+                               yyval.attr=attr;
+
+                              }
+                            }
+break;
+case 20:
+#line 209 "crc.y"
+	{
+
+                              if(noerror)
+                               {
+                                ATTR* attr=getNewAttr();
+                                strcpy(attr->attribute,"char *"); 
+                                strcat(attr->attribute,yyvsp[0].stval);
+
+                                yyval.attr=attr;
+
+                               }
+                             }
+break;
+case 21:
+#line 221 "crc.y"
+	{yyerror("Missing Type for Variable"); }
+break;
+case 22:
+#line 223 "crc.y"
+	{ yyerror("Missing Type for Variable"); }
+break;
+case 23:
+#line 225 "crc.y"
+	{ yyerror("Missing Variable"); }
+break;
+case 24:
+#line 226 "crc.y"
+	{ yyerror("Missing Variable"); }
+break;
+case 25:
+#line 227 "crc.y"
+	{ yyerror("Missing Variable"); }
+break;
+case 26:
+#line 228 "crc.y"
+	{ yyerror("Missing Variable"); }
+break;
+case 27:
+#line 230 "crc.y"
+	{
+                if(noerror)
+                  yyval.colbr=NULL; 
+
+              }
+break;
+case 28:
+#line 235 "crc.y"
+	{
+                 if(noerror)
+                  {
+                   if(yyval.colbr)
+                    {
+                      int no=2;
+                      COLABR *temp=yyval.colbr;
+                      while(temp->next)
+                        { temp=temp->next;
+                          no++;
+                        }
+                      temp->next=yyvsp[0].colbr;
+                      if(debug) 
+                       printf("Assigned %dth Colabration\n",no);
+
+                    }
+                   else
+                     {
+                      yyval.colbr=yyvsp[0].colbr;
+                      if(debug) 
+                        printf("Assigned Ist Colabration\n");
+
+                     }
+                  }
+                 }
+break;
+case 29:
+#line 260 "crc.y"
+	{
+                               if(noerror)
+                                  yyval.colbr=yyvsp[-1].colbr ; 
+                             }
+break;
+case 30:
+#line 264 "crc.y"
+	{
+                     yyerror("Colabration defined but is empty");
+
+                    }
+break;
+case 31:
+#line 268 "crc.y"
+	{
+                             if(noerror)
+                              {
+                               COLABR* col=getNewColbr();
+                               col->relation=USING_R;
+                               col->className=yyvsp[0].ptr;
+                               yyval.colbr=col;
+                              }
+                            }
+break;
+case 32:
+#line 277 "crc.y"
+	{
+                             if(noerror)
+                              {
+                               COLABR* col=getNewColbr();
+                               col->relation=HAS_A_R;
+                               col->className=yyvsp[0].ptr;
+                               yyval.colbr=col;
+                              }
+                            }
+break;
+case 33:
+#line 286 "crc.y"
+	{
+                               if(noerror)
+                                {
+                                 COLABR* col=getNewColbr();
+                                 col->relation=KIND_OF_R;
+
+                                 col->className=yyvsp[0].ptr;
+                                 yyval.colbr=col;
+
+                                }
+                              }
+break;
+case 34:
+#line 297 "crc.y"
+	{yyerror("Missing Relation"); }
+break;
+case 35:
+#line 298 "crc.y"
+	{yyerror("Missing Class"); }
+break;
+case 36:
+#line 299 "crc.y"
+	{yyerror("Missing Class"); }
+break;
+case 37:
+#line 300 "crc.y"
+	{yyerror("Missing Class"); }
+break;
+#line 790 "y.tab.c"
+    }
+    yyssp -= yym;
+    yystate = *yyssp;
+    yyvsp -= yym;
+    yym = yylhs[yyn];
+    if (yystate == 0 && yym == 0)
+    {
+#if YYDEBUG
+        if (yydebug)
+            printf("%sdebug: after reduction, shifting from state 0 to\
+ state %d\n", YYPREFIX, YYFINAL);
+#endif
+        yystate = YYFINAL;
+        *++yyssp = YYFINAL;
+        *++yyvsp = yyval;
+        if (yychar < 0)
+        {
+            if ((yychar = yylex()) < 0) yychar = 0;
+#if YYDEBUG
+            if (yydebug)
+            {
+                yys = 0;
+                if (yychar <= YYMAXTOKEN) yys = yyname[yychar];
+                if (!yys) yys = "illegal-symbol";
+                printf("%sdebug: state %d, reading %d (%s)\n",
+                        YYPREFIX, YYFINAL, yychar, yys);
+            }
+#endif
+        }
+        if (yychar == 0) goto yyaccept;
+        goto yyloop;
+    }
+    if ((yyn = yygindex[yym]) && (yyn += yystate) >= 0 &&
+            yyn <= YYTABLESIZE && yycheck[yyn] == yystate)
+        yystate = yytable[yyn];
+    else
+        yystate = yydgoto[yym];
+#if YYDEBUG
+    if (yydebug)
+        printf("%sdebug: after reduction, shifting from state %d \
+to state %d\n", YYPREFIX, *yyssp, yystate);
+#endif
+    if (yyssp >= yysslim && yygrowstack())
+    {
+        goto yyoverflow;
+    }
+    *++yyssp = (short) yystate;
+    *++yyvsp = yyval;
+    goto yyloop;
+
+yyoverflow:
+    yyerror("yacc stack overflow");
+
+yyabort:
+    return (1);
+
+yyaccept:
+    return (0);
+}

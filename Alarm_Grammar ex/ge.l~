@@ -1,0 +1,12 @@
+%{ 
+#include <stdio.h>
+void yyerror(char *);
+#include "y.tab.h"
+int yylval;
+%}
+%% 
+[1]*[0]		{return TOKEN1;}
+[1]*		{return TOKEN2;}
+[ \t]		;/*skip white spaces */
+.		yyerror("invalid character");
+%%
